@@ -3,6 +3,7 @@
   height: 50px;
   border: 2px solid #fff;
   border-radius: 2px;
+  margin: 0 0 0 10px;
   background-color: transparent;
   background-image: url(../../../images/Add\ Button.svg);
   background-repeat: no-repeat;
@@ -10,6 +11,7 @@
   padding: 0;
   transition: opacity 0.2s linear;
   cursor: pointer;
+  place-content: center flex-end;
 }
 
 .profile__add-button:hover {
