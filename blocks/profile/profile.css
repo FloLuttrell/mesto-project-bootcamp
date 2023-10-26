@@ -7,3 +7,12 @@
   max-width: 880px;
   overflow: hidden;
 }
+
+@media screen and (max-width: 888px) {
+  .profile {
+    /* max-width: 282px; */
+    padding-top: 42px;
+    flex-direction: column;
+    margin: auto;
+  }
+}

@@ -4,3 +4,9 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+@media screen and (max-width: 888px) {
+  .profile__name {
+    margin: 22px 0 0 14px;
+  }
+}

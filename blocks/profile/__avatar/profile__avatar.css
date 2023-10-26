@@ -3,3 +3,10 @@
   flex-direction: row;
   align-items: center;
 }
+
+@media screen and (max-width: 888px) {
+  .profile__avatar {
+    flex-direction: column;
+    margin: auto;
+  }
+}
