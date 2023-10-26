@@ -8,3 +8,14 @@
   padding: 0;
   row-gap: 20px;
 }
+@media screen and (max-width: 888px) {
+  .elements__list {
+    grid-template-columns: repeat(2, 282px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .elements__list {
+    grid-template-columns: 282px;
+  }
+}

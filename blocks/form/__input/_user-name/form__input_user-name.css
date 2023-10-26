@@ -1,0 +1,9 @@
+.form__input_user-name::placeholder {
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.form__input_user-name {
+  padding: 0 0 13px;
+}
