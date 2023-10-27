@@ -2,6 +2,7 @@
   max-width: 880px;
   border-bottom: 1px solid rgba(84, 84, 84, 0.7);
   padding-top: 45px;
+  padding-bottom: 41px;
   margin: auto;
 }
 
@@ -9,5 +10,6 @@
   .header {
     padding-top: 28px;
     padding-left: 27px;
+    padding-bottom: 31px;
   }
 }

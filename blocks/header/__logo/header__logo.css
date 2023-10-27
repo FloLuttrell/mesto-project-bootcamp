@@ -4,6 +4,7 @@
 
 @media screen and (max-width: 910px) {
   .header__logo {
-    content: url(../../../images/logomobi.svg);
+    display: block;
+    width: 103.736px;
   }
 }
