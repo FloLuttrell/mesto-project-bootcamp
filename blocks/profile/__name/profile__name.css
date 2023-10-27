@@ -8,7 +8,7 @@
   line-height: 48px; /* 114.286% */
 }
 
-@media screen and (max-width: 888px) {
+@media screen and (max-width: 910px) {
   .profile__name {
     margin: 22px 0 0 14px;
   }

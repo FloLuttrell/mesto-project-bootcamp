@@ -1,0 +1,9 @@
+.header__logo {
+  content: url(../../../images/logo.svg);
+}
+
+@media screen and (max-width: 910px) {
+  .header__logo {
+    content: url(../../../images/logomobi.svg);
+  }
+}

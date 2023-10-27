@@ -9,8 +9,3 @@
   display: block;
   transition: opacity 0.2s linear;
 }
-
-.profile__image:hover {
-  opacity: 0.8;
-  cursor: pointer;
-}

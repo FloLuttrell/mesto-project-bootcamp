@@ -3,7 +3,7 @@
   height: 32px;
   border: none;
   padding: 0;
-  background-image: url(../../../images/Close\ Icon.svg);
+  background-image: url(../../../images/CloseIcon.svg);
   background-color: transparent;
   background-position: center;
   background-size: cover;
@@ -18,7 +18,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 888px) {
+@media screen and (max-width: 910px) {
   .popup__close {
     width: 20px;
     height: 20px;
