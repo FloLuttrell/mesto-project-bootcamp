@@ -1,5 +1,17 @@
 "use strict";
 
+const popupEdit = document.querySelector(".popup_type_editUser");
+const nameEl = document.querySelector(".profile__name");
+const nameInput = document.querySelector(".form__input_type_user-name");
+const aboutEl = document.querySelector(".profile__about");
+const aboutInput = document.querySelector(".form__input_type_about");
+const imageName = document.querySelector(".form__input_type_image-name");
+const imageUrl = document.querySelector(".form__input_type_image-link");
+const popupAdd = document.querySelector(".popup_type_addElement");
+const popupImg = document.querySelector(".popup_type_image");
+const bigImg = popupImg.querySelector(".popup__image");
+const popupName = popupImg.querySelector(".popup__image-title");
+
 const closePopup = function (popup) {
   popup.classList.remove("popup_opened");
 };
@@ -18,34 +30,22 @@ popups.forEach(function (popup) {
 
 const editProfileButton = document.querySelector(".profile__edit-button");
 editProfileButton.addEventListener("click", function () {
-  const popup = document.querySelector(".popup_type_editUser");
-  openPopup(popup);
-  const nameEl = document.querySelector(".profile__name");
-  const nameInput = document.querySelector(".form__input_type_user-name");
+  openPopup(popupEdit);
   nameInput.value = nameEl.textContent;
-  const aboutEl = document.querySelector(".profile__about");
-  const aboutInput = document.querySelector(".form__input_type_about");
   aboutInput.value = aboutEl.textContent;
 });
 
 const profleForm = document.querySelector(".popup_type_editUser .form");
 profleForm.addEventListener("submit", function (event) {
   event.preventDefault();
-  const nameEl = document.querySelector(".profile__name");
-  const nameInput = document.querySelector(".form__input_type_user-name");
   nameEl.textContent = nameInput.value;
-  const aboutEl = document.querySelector(".profile__about");
-  const aboutInput = document.querySelector(".form__input_type_about");
   aboutEl.textContent = aboutInput.value;
-  const popup = document.querySelector(".popup_type_editUser");
-  closePopup(popup);
+  closePopup(popupEdit);
 });
 
 const imageForm = document.querySelector(".popup_type_addElement .form");
 imageForm.addEventListener("submit", function (event) {
   event.preventDefault();
-  const imageName = document.querySelector(".form__input_type_image-name");
-  const imageUrl = document.querySelector(".form__input_type_image-link");
   const userCard = {
     name: imageName.value,
     link: imageUrl.value,
@@ -53,8 +53,7 @@ imageForm.addEventListener("submit", function (event) {
   const newUserCard = createItem(userCard);
 
   addItem(newUserCard);
-  const popup = document.querySelector(".popup_type_addElement");
-  closePopup(popup);
+  closePopup(popupAdd);
   imageName.value = "";
   imageUrl.value = "";
 });
@@ -83,10 +82,8 @@ function createItem(item) {
   //image
   const imgBtn = newItem.querySelector(".elements__image");
   imgBtn.addEventListener("click", () => {
-    const popupImg = document.querySelector(".popup_type_image");
-    const bigImg = popupImg.querySelector(".popup__image");
     bigImg.src = item.link;
-    const popupName = popupImg.querySelector(".popup__image-title");
+    bigImg.alt = item.name;
     popupName.textContent = item.name;
     openPopup(popupImg);
   });
@@ -96,7 +93,7 @@ function createItem(item) {
 
 const itemsBlock = document.querySelector(".elements__list");
 function addItem(item) {
-  itemsBlock.append(item);
+  itemsBlock.prepend(item);
 }
 
 const cardAddButton = document.querySelector(".profile__add-button");
