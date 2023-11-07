@@ -1,10 +1,123 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Webpack</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--    <link rel="stylesheet" href="./pages/index.css" />-->
+    <title>Место</title>
 </head>
-<body>
-<h1>Hello</h1>
+<body class="body">
+<header class="header">
+    <img class="header__logo" alt="логотип" />
+</header>
+<main>
+    <section class="profile">
+        <div class="profile__avatar">
+            <img
+                    class="profile__image"
+                    src="<%=require('../images/profile.jpg')%>"
+                    alt="фотография пользователя"
+            />
+            <div class="profile__info">
+                <div class="profile__into">
+                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <button class="profile__edit-button" type="button"></button>
+                </div>
+                <p class="profile__about">Исследователь дна</p>
+            </div>
+        </div>
+        <button class="profile__add-button" type="button"></button>
+    </section>
+    <section class="elements">
+        <ul class="elements__list"></ul>
+    </section>
+</main>
+<footer class="footer">
+    <p class="footer__copyright" lang="en">&copy; 2023 Mesto Russia</p>
+</footer>
+
+<template class="card-template">
+    <li class="elements__card">
+        <button class="elements__trash-button" type="button"></button>
+        <img class="elements__image" src=" " alt="Пейзаж." />
+        <div class="elements__description">
+            <h2 class="elements__title"></h2>
+            <button class="elements__like-button" type="button"></button>
+        </div>
+    </li>
+</template>
+
+<div class="popup popup_type_editUser">
+    <div class="popup__container">
+        <button class="popup__close" aria-label="Закрыть"></button>
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <form class="form" name="about">
+            <fieldset class="form__container">
+                <label class="form__field">
+                    <input
+                            class="form__input form__input_type_user-name"
+                            type="text"
+                            name="name"
+                            placeholder="Имя"
+                            required
+                    />
+                </label>
+                <label class="form__field">
+                    <input
+                            class="form__input form__input_type_about"
+                            type="text"
+                            name="about"
+                            placeholder="О себе"
+                            required
+                    />
+                </label>
+                <button class="form__save-button" type="submit">Сохранить</button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<div class="popup popup_type_addElement">
+    <div class="popup__container">
+        <button class="popup__close" aria-label="Закрыть"></button>
+        <h3 class="popup__title">Новое место</h3>
+        <form class="form">
+            <fieldset class="form__container">
+                <label class="form__field">
+                    <input
+                            class="form__input form__input_type_image-name"
+                            type="text"
+                            name="name"
+                            placeholder="Название"
+                            maxlength="30"
+                            required
+                    />
+                </label>
+                <label class="form__field">
+                    <input
+                            class="form__input form__input_type_image-link"
+                            type="url"
+                            name="link"
+                            placeholder="Ссылка на картинку"
+                            required
+                    />
+                </label>
+                <button class="form__save-button" type="submit">Сохранить</button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<div class="popup popup_type_image">
+    <div class="popup__container-image">
+        <button class="popup__close" aria-label="Закрыть"></button>
+        <figure class="popup__figure">
+            <img class="popup__image" src="#" alt="#" />
+            <figcaption class="popup__image-caption">
+                <p class="popup__image-title"></p>
+            </figcaption>
+        </figure>
+    </div>
+</div>
 </body>
 </html>
