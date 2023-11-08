@@ -47,8 +47,6 @@
 @import url(../blocks/form/__container/form__container.css);
 @import url(../blocks/form/__field/form__field.css);
 @import url(../blocks/form/__input/form__input.css);
-/* @import url(../blocks/form/__input/_about/form__input_about.css);
-@import url(../blocks/form/__input/_user-name/form__input_user-name.css); */
 @import url(../blocks/form/__save-button/form__save-button.css);
-/* @import url(../blocks/form/__input/_type/form__input_type_about.css);
-@import url(../blocks/form/__input/_type/form__input_type_user-name.css); */
+@import url(../blocks/form/__input/__input-error/form__input-error.css);
+@import url(../blocks/form/__input/__input-red/form__input-red.css);

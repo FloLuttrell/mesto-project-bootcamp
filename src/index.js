@@ -12,6 +12,31 @@ const popupImg = document.querySelector(".popup_type_image");
 const bigImg = popupImg.querySelector(".popup__image");
 const popupName = popupImg.querySelector(".popup__image-title");
 
+function showError(inputField, errorMessage) {
+    const spanId = 'error-' + inputField.id;
+    const spanElement = document.getElementById(spanId);
+    spanElement.textContent = errorMessage;
+    inputField.classList.add('form__input-red');
+}
+
+function hideError(inputField) {
+    const spanId = 'error-' + inputField.id;
+    const spanElement = document.getElementById(spanId);
+    spanElement.textContent = '';
+    inputField.classList.remove('form__input-red');
+}
+function handleInput(evt) {
+    const inputElement = evt.target;
+    if(inputElement.validity.valid) {
+        hideError(inputElement);
+    } else {
+        showError(inputElement, inputElement.validationMessage)
+        console.log(inputElement.validationMessage);
+    }
+}
+nameInput.addEventListener('input', handleInput);
+aboutInput.addEventListener('input', handleInput)
+
 const closePopup = function (popup) {
     popup.classList.remove("popup_opened");
 };

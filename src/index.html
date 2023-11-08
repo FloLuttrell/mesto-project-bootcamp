@@ -58,18 +58,28 @@
                             class="form__input form__input_type_user-name"
                             type="text"
                             name="name"
+                            id="username"
                             placeholder="Имя"
                             required
+                            minlength="2"
+                            maxlength="40"
                     />
+                    <span id="error-username" class="form__input-error"></span>
                 </label>
+
                 <label class="form__field">
                     <input
                             class="form__input form__input_type_about"
                             type="text"
                             name="about"
+                            id="about"
                             placeholder="О себе"
                             required
+                            minlength="2"
+                            maxlength="200"
                     />
+                    <span id="error-about" class="form__input-error"></span>
+
                 </label>
                 <button class="form__save-button" type="submit">Сохранить</button>
             </fieldset>
@@ -89,9 +99,11 @@
                             type="text"
                             name="name"
                             placeholder="Название"
-                            maxlength="30"
                             required
+                            minlength="2"
+                            maxlength="30"
                     />
+                    <span id="error-elementname" class="form__input-error"></span>
                 </label>
                 <label class="form__field">
                     <input
@@ -101,6 +113,7 @@
                             placeholder="Ссылка на картинку"
                             required
                     />
+                    <span id="error-image" class="form__input-error"></span>
                 </label>
                 <button class="form__save-button" type="submit">Сохранить</button>
             </fieldset>
