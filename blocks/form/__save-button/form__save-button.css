@@ -14,6 +14,15 @@
   opacity: 0.8;
 }
 
+.form__save-button:disabled {
+  background-color: #0000;
+  border: 1px solid #000;
+  border-radius: 2px;
+  color: #000;
+  opacity: 0.2;
+}
+
+
 @media screen and (max-width: 600px) {
   .form__save-button {
     max-width: 238px;
