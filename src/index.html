@@ -52,8 +52,8 @@
         <button class="popup__close" aria-label="Закрыть"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
         <form class="form" name="about">
-            <fieldset class="form__container">
-                <label class="form__field">
+            <div class="form__container">
+                <div class="form__field">
                     <input
                             class="form__input form__input_type_user-name"
                             type="text"
@@ -65,9 +65,9 @@
                             maxlength="40"
                     />
                     <span id="error-username" class="form__input-error"></span>
-                </label>
+                </div>
 
-                <label class="form__field">
+                <div class="form__field">
                     <input
                             class="form__input form__input_type_about"
                             type="text"
@@ -80,9 +80,9 @@
                     />
                     <span id="error-about" class="form__input-error"></span>
 
-                </label>
+                </div>
                 <button class="form__save-button" type="submit">Сохранить</button>
-            </fieldset>
+            </div>
         </form>
     </div>
 </div>
@@ -92,8 +92,8 @@
         <button class="popup__close" aria-label="Закрыть"></button>
         <h3 class="popup__title">Новое место</h3>
         <form class="form">
-            <fieldset class="form__container">
-                <label class="form__field">
+            <div class="form__container">
+                <div class="form__field">
                     <input
                             class="form__input form__input_type_image-name"
                             type="text"
@@ -105,8 +105,8 @@
                             maxlength="30"
                     />
                     <span id="error-elementname" class="form__input-error"></span>
-                </label>
-                <label class="form__field">
+                </div>
+                <div class="form__field">
                     <input
                             class="form__input form__input_type_image-link"
                             type="url"
@@ -116,9 +116,9 @@
                             required
                     />
                     <span id="error-image" class="form__input-error"></span>
-                </label>
+                </div>
                 <button class="form__save-button" type="submit">Сохранить</button>
-            </fieldset>
+            </div>
         </form>
     </div>
 </div>

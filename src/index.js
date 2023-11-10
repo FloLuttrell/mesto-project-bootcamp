@@ -1,6 +1,4 @@
 import "../pages/index.css"; // добавьте импорт главного файла стилей
-import "./components/modal";
-import './components/validate'
 import {addItem, createItem} from './components/card'
 import {closeCardAddPopup, closeProfileEditPopup, openCardAddPopup, openProfileEditPopup} from "./components/modal";
 import {enableValidation} from "./components/validate";

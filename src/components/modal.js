@@ -9,12 +9,24 @@ const profileEditPopup = document.querySelector(".popup_type_editUser");
 
 const allPopups = document.querySelectorAll(".popup");
 
+
+function closeByEsc(evt) {
+    if (evt.key === 'Escape') {
+        const openedPopup = document.querySelector('.popup_opened');
+        if (openedPopup !== null) {
+            closePopup(openedPopup);
+        }
+    }
+}
+
 function closePopup (popup) {
     popup.classList.remove("popup_opened");
+    document.removeEventListener('keydown', closeByEsc)
 }
 
 function openPopup (popup) {
     popup.classList.add("popup_opened");
+    document.addEventListener('keydown', closeByEsc);
 }
 
 export function openImageDetailPopup(itemLink, itemName) {
@@ -40,17 +52,10 @@ export function closeProfileEditPopup () {
     closePopup(profileEditPopup);
 }
 
-document.addEventListener('keydown', function closeByEsc(evt) {
-    if (evt.key === 'Escape') {
-        const openedPopup = document.querySelector('.popup_opened');
-        if (openedPopup !== null) {
-            closePopup(openedPopup);
-        }
-    }
-});
+
 
 for (const popup of allPopups) {
-    popup.addEventListener('click', function(event){
+    popup.addEventListener('pointerdown', function(event){
         if (event.target === popup) {
             closePopup(popup)
         }
