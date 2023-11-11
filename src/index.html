@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!--    <link rel="stylesheet" href="./pages/index.css" />-->
     <title>Место</title>
 </head>
 <body class="body">
 <header class="header">
-    <img class="header__logo" alt="логотип" />
+    <img class="header__logo" alt="логотип"/>
 </header>
 <main>
     <section class="profile">
         <div class="profile__avatar">
+
             <img
                     class="profile__image"
                     src="<%=require('../images/profile.jpg')%>"
                     alt="фотография пользователя"
             />
+
+        </div>
             <div class="profile__info">
                 <div class="profile__into">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -39,10 +42,13 @@
 <template class="card-template">
     <li class="elements__card">
         <button class="elements__trash-button" type="button"></button>
-        <img class="elements__image" src=" " alt="Пейзаж." />
+        <img class="elements__image" src=" " alt="Пейзаж."/>
         <div class="elements__description">
             <h2 class="elements__title"></h2>
-            <button class="elements__like-button" type="button"></button>
+            <div class="elements__like-container">
+                <button class="elements__like-button" type="button"></button>
+                <span class="elements__like-counter">0</span>
+            </div>
         </div>
     </li>
 </template>
@@ -127,7 +133,7 @@
     <div class="popup__container-image">
         <button class="popup__close" aria-label="Закрыть"></button>
         <figure class="popup__figure">
-            <img class="popup__image" src="#" alt="#" />
+            <img class="popup__image" src="#" alt="#"/>
             <figcaption class="popup__image-caption">
                 <p class="popup__image-title"></p>
             </figcaption>
