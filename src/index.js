@@ -48,67 +48,64 @@ const cardAddSubmitButton = cardAddForm.querySelector(".form__save-button");
 let currentUserId = "";
 
 const editProfileButton = document.querySelector(".profile__edit-button");
-editProfileButton.addEventListener("click", function () {
+editProfileButton.addEventListener("click", () => {
   profileNameInput.value = nameEl.textContent;
   profileAboutInput.value = aboutEl.textContent;
   profileSubmitButton.textContent = "Сохранить";
   openPopup(profileEditPopup);
 });
 
-profileEditForm.addEventListener("submit", function (event) {
+profileEditForm.addEventListener("submit", (event) => {
   event.preventDefault();
   profileSubmitButton.textContent = "Сохранение...";
   patchProfile(profileNameInput.value, profileAboutInput.value)
-    .then(function (data) {
+    .then((data) => {
       nameEl.textContent = data.name;
       aboutEl.textContent = data.about;
-      profileSubmitButton.textContent = "Успех";
       closePopup(profileEditPopup);
     })
-    .catch(function (err) {
+    .catch((err) => {
       profileSubmitButton.textContent = "Ошибочка";
       console.error(err);
     });
 });
 const updateAvatarButton = document.querySelector(".profile__avatar");
-updateAvatarButton.addEventListener("click", function () {
+updateAvatarButton.addEventListener("click", () => {
   profileAvatarSubmitButton.textContent = "Сохранить";
   openPopup(profileAvatarPopup);
 });
-profileAvatarForm.addEventListener("submit", function (event) {
+profileAvatarForm.addEventListener("submit", (event) => {
   event.preventDefault();
   profileAvatarSubmitButton.textContent = "Сохранение...";
   updateProfileAvatar(profileAvatarUrlInput.value)
-    .then(function (profile) {
+    .then((profile) => {
       profileAvatarImg.src = profile.avatar;
-      profileAvatarSubmitButton.textContent = "Успех";
       closePopup(profileAvatarPopup);
+      event.target.reset();
     })
-    .catch(function (err) {
+    .catch((err) => {
       profileAvatarSubmitButton.textContent = "Ошибочка";
       console.error(err);
     });
 });
 
 const cardAddButton = document.querySelector(".profile__add-button");
-cardAddButton.addEventListener("click", function () {
-  cardNameInput.value = "";
-  cardImageUrlInput.value = "";
+cardAddButton.addEventListener("click", () => {
   cardAddSubmitButton.textContent = "Сохранить";
   openPopup(cardAddPopup);
 });
 
-cardAddForm.addEventListener("submit", function (event) {
+cardAddForm.addEventListener("submit", (event) => {
   event.preventDefault();
   cardAddSubmitButton.textContent = "Сохранение...";
   postCard(cardNameInput.value, cardImageUrlInput.value)
-    .then(function (data) {
+    .then((data) => {
       const cardEl = createItem(data, currentUserId);
       addItem(cardEl);
-      cardAddSubmitButton.textContent = "Успех";
       closePopup(cardAddPopup);
+      event.target.reset();
     })
-    .catch(function (err) {
+    .catch((err) => {
       cardAddSubmitButton.textContent = "Ошибочка";
       console.error(err);
     });
@@ -128,20 +125,15 @@ enableValidation({
   // errorClass: 'popup__error_visible'
 });
 
-getProfile()
-  .then(function (profileData) {
+Promise.all([getProfile(), fetchCards()])
+  .then(([profileData, cards]) => {
     nameEl.textContent = profileData.name;
     aboutEl.textContent = profileData.about;
     profileAvatarImg.src = profileData.avatar;
     currentUserId = profileData._id;
-    return fetchCards();
-  })
-  .then(function (cards) {
     for (const card of cards) {
       const newCard = createItem(card, currentUserId);
       addItem(newCard);
     }
   })
-  .catch(function (err) {
-    console.error(err);
-  });
+  .catch(console.error);

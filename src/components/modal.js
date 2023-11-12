@@ -21,14 +21,14 @@ export function enablePopups(options) {
   const allPopups = document.querySelectorAll(options.popupSelector);
 
   for (const popup of allPopups) {
-    popup.addEventListener("pointerdown", function (event) {
+    popup.addEventListener("pointerdown", (event) => {
       if (event.target === popup) {
         closePopup(popup);
       }
     });
 
     const exitBtn = popup.querySelector(options.exitBtnSelector);
-    exitBtn.addEventListener("click", function () {
+    exitBtn.addEventListener("click", () => {
       closePopup(popup);
     });
   }

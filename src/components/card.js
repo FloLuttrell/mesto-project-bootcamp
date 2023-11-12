@@ -25,19 +25,19 @@ export function createItem(item, currentUserId) {
   const newItem = cardTemplate.cloneNode(true);
   const elementName = newItem.querySelector(".elements__title");
   elementName.textContent = item.name;
+  //image
   const elementImage = newItem.querySelector(".elements__image");
   elementImage.src = item.link;
   elementImage.alt = item.name;
+  elementImage.addEventListener("click", () =>
+    openImageDetailPopup(item.link, item.name),
+  );
   // deleting
   const deleteCardButton = newItem.querySelector(".elements__trash-button");
   deleteCardButton.addEventListener("click", () => {
     deleteCard(item._id)
-      .then(function () {
-        newItem.remove();
-      })
-      .catch(function (err) {
-        console.error(err);
-      });
+      .then(() => newItem.remove())
+      .catch(console.error);
   });
   if (item.owner._id !== currentUserId) {
     deleteCardButton.remove();
@@ -52,37 +52,25 @@ export function createItem(item, currentUserId) {
   likeCardButton.addEventListener("click", () => {
     if (likeCardButton.classList.contains(likeClass)) {
       dislikeCard(item._id)
-        .then(function (card) {
+        .then((card) => {
           likeCardButton.classList.remove(likeClass);
           likeCounter.textContent = card.likes.length;
         })
-        .catch(function (err) {
-          console.error(err);
-        });
+        .catch(console.error);
     } else {
       likeCard(item._id)
-        .then(function (card) {
+        .then((card) => {
           likeCardButton.classList.add(likeClass);
           likeCounter.textContent = card.likes.length;
         })
-        .catch(function (err) {
-          console.error(err);
-        });
+        .catch(console.error);
     }
     // likeCardButton.classList.toggle("elements__like-button_active");
   });
-  const myLike = item.likes.find(function (like) {
-    return like._id === currentUserId;
-  });
+  const myLike = item.likes.find((like) => like._id === currentUserId);
   if (myLike) {
     likeCardButton.classList.add(likeClass);
   }
-
-  //image
-  const imgBtn = newItem.querySelector(".elements__image");
-  imgBtn.addEventListener("click", () => {
-    openImageDetailPopup(item.link, item.name);
-  });
 
   return newItem;
 }
