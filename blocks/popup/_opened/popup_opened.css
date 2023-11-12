@@ -1,5 +1,0 @@
-.popup_opened {
-  opacity: 1;
-  transition: width 0s linear 0s, opacity 0.3s linear 0s;
-  width: 100%;
-}

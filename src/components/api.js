@@ -5,7 +5,12 @@ const headers = {
 };
 
 function responseToJson(res){
-    return res.json()
+    if(res.ok) {
+        return res.json()
+    } else {
+        return Promise.reject(res)
+    }
+
 }
 
 export function fetchCards() {
@@ -38,7 +43,7 @@ export function patchProfile(name, about) {
         name: name,
         about: about,
     });
-    return fetch(userUrl, {headers, method:"patch", body: bodyJson})
+    return fetch(userUrl, {headers, method:"PATCH", body: bodyJson})
         .then(responseToJson)
 }
 
@@ -57,5 +62,14 @@ export function likeCard(cardId) {
 export function dislikeCard(cardId) {
     const likeUrl = `https://nomoreparties.co/v1/${groupId}/cards/likes/${cardId}`;
     return fetch(likeUrl, {headers, method:'delete'})
+        .then(responseToJson)
+}
+
+export function updateProfileAvatar(avatarUrl) {
+    const url = `https://nomoreparties.co/v1/${groupId}/users/me/avatar`;
+    const bodyJson = JSON.stringify({
+        avatar: avatarUrl,
+    });
+    return fetch(url, {headers, method:'PATCH', body: bodyJson})
         .then(responseToJson)
 }
