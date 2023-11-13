@@ -1,7 +1,7 @@
 import "./pages/index.css"; // добавьте импорт главного файла стилей
 import { addItem, createItem } from "./components/card";
 import { closePopup, enablePopups, openPopup } from "./components/modal";
-import { enableValidation } from "./components/validate";
+import { enableValidation, validateForm } from "./components/validate";
 import {
   fetchCards,
   getProfile,
@@ -47,69 +47,102 @@ const cardAddSubmitButton = cardAddForm.querySelector(".form__save-button");
 
 let currentUserId = "";
 
+//универсальная функция переименования кнопки
+function buildSubmitHandler(
+  actionFn,
+  texts = {
+    pending: "Сохранение...",
+    done: "Успех",
+    error: "Ошибочка",
+  },
+) {
+  return function (event) {
+    event.preventDefault();
+    event.submitter.textContent = texts.pending;
+    actionFn()
+      .then(function () {
+        event.submitter.textContent = texts.done;
+        event.target.reset();
+      })
+      .catch(function (error) {
+        console.error(error);
+        event.submitter.textContent = texts.error;
+      });
+  };
+}
+
 const editProfileButton = document.querySelector(".profile__edit-button");
+
 editProfileButton.addEventListener("click", () => {
   profileNameInput.value = nameEl.textContent;
   profileAboutInput.value = aboutEl.textContent;
   profileSubmitButton.textContent = "Сохранить";
+  validateForm(profileEditForm, profileSubmitButton);
   openPopup(profileEditPopup);
 });
 
-profileEditForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  profileSubmitButton.textContent = "Сохранение...";
-  patchProfile(profileNameInput.value, profileAboutInput.value)
-    .then((data) => {
-      nameEl.textContent = data.name;
-      aboutEl.textContent = data.about;
-      closePopup(profileEditPopup);
-    })
-    .catch((err) => {
-      profileSubmitButton.textContent = "Ошибочка";
-      console.error(err);
-    });
-});
+profileEditForm.addEventListener(
+  "submit",
+  buildSubmitHandler(function () {
+    return patchProfile(profileNameInput.value, profileAboutInput.value).then(
+      (data) => {
+        nameEl.textContent = data.name;
+        aboutEl.textContent = data.about;
+        closePopup(profileEditPopup);
+      },
+    );
+  }),
+);
+
+// profileEditForm.addEventListener("submit", (event) => {
+//   event.preventDefault();
+//   profileSubmitButton.textContent = "Сохранение...";
+//   patchProfile(profileNameInput.value, profileAboutInput.value)
+//     .then((data) => {
+//       nameEl.textContent = data.name;
+//       aboutEl.textContent = data.about;
+//       closePopup(profileEditPopup);
+//     })
+//     .catch((err) => {
+//       profileSubmitButton.textContent = "Ошибочка";
+//       console.error(err);
+//     });
+// });
 const updateAvatarButton = document.querySelector(".profile__avatar");
 updateAvatarButton.addEventListener("click", () => {
   profileAvatarSubmitButton.textContent = "Сохранить";
+  validateForm(profileAvatarForm, profileAvatarSubmitButton);
   openPopup(profileAvatarPopup);
 });
-profileAvatarForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  profileAvatarSubmitButton.textContent = "Сохранение...";
-  updateProfileAvatar(profileAvatarUrlInput.value)
-    .then((profile) => {
+profileAvatarForm.addEventListener(
+  "submit",
+  buildSubmitHandler(() => {
+    return updateProfileAvatar(profileAvatarUrlInput.value).then((profile) => {
       profileAvatarImg.src = profile.avatar;
       closePopup(profileAvatarPopup);
-      event.target.reset();
-    })
-    .catch((err) => {
-      profileAvatarSubmitButton.textContent = "Ошибочка";
-      console.error(err);
     });
-});
+  }),
+);
 
 const cardAddButton = document.querySelector(".profile__add-button");
 cardAddButton.addEventListener("click", () => {
   cardAddSubmitButton.textContent = "Сохранить";
+  validateForm(cardAddForm, cardAddSubmitButton);
   openPopup(cardAddPopup);
 });
 
-cardAddForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  cardAddSubmitButton.textContent = "Сохранение...";
-  postCard(cardNameInput.value, cardImageUrlInput.value)
-    .then((data) => {
-      const cardEl = createItem(data, currentUserId);
-      addItem(cardEl);
-      closePopup(cardAddPopup);
-      event.target.reset();
-    })
-    .catch((err) => {
-      cardAddSubmitButton.textContent = "Ошибочка";
-      console.error(err);
-    });
-});
+cardAddForm.addEventListener(
+  "submit",
+  buildSubmitHandler(() => {
+    return postCard(cardNameInput.value, cardImageUrlInput.value).then(
+      (data) => {
+        const cardEl = createItem(data, currentUserId);
+        addItem(cardEl);
+        closePopup(cardAddPopup);
+      },
+    );
+  }),
+);
 
 enablePopups({
   popupSelector: ".popup",

@@ -8,7 +8,7 @@ function validateInput(inputEl, errorSpanEl, inputErrorClass) {
   }
 }
 
-function validateForm(formEl, submitButtonEl) {
+export function validateForm(formEl, submitButtonEl) {
   if (formEl.checkValidity()) {
     submitButtonEl.removeAttribute("disabled", "");
   } else {
