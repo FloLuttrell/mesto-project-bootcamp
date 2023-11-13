@@ -8,6 +8,8 @@
   background-size: 22px 19px;
   background-position: center;
   background-repeat: no-repeat;
+  transition: opacity 0.2s linear;
+
 }
 
 .elements__like-button:hover {
